@@ -12,14 +12,20 @@ export interface Product {
   providedIn: 'root'
 })
 export class ListService {
-  private products: Product[] = [
-    { id: 1, name: 'Product 1', price: 19.99, description: 'This is product 1' },
-    { id: 2, name: 'Product 2', price: 29.99, description: 'This is product 2' },
-    { id: 3, name: 'Product 3', price: 39.99, description: 'This is product 3' },
-    { id: 4, name: 'Product 4', price: 49.99, description: 'This is product 4' },
-    { id: 5, name: 'Product 5', price: 59.99, description: 'This is product 5' },
-    { id: 6, name: 'Product 6', price: 69.99, description: 'This is product 6' },
-  ];
+  private products: Product[] = [];
+
+  constructor() {
+    const n: number = 8; // Number of elements can be managed dynamiclly
+    for (let i = 1; i <= n; i++) {
+      const randomPrice = (Math.random() * (200 - 10) + 10).toFixed(2); //Random generating of the pricing
+      this.products.push({
+        id: i, //Set the id for the product based on iteration
+        name: `Product ${i}`, // SImple name for the product
+        price: parseFloat(randomPrice) , //Price of the product
+        description: `This is product ${i}` // Short description of the product
+      });
+    }
+  }
 
   private productsSubject = new BehaviorSubject<Product[]>(this.products);
 

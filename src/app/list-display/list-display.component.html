@@ -1,4 +1,14 @@
-<h2>List Items</h2>
-<ul>
-  <li *ngFor="let item of items$ | async">{{ item }}</li>
-</ul>
+<div class="product-grid">
+    <div class="grid-header">
+        <div class="grid-cell">Name</div>
+        <div class="grid-cell">Price</div>
+        <div class="grid-cell">Description</div>
+    </div>
+    <ng-container *ngIf="products$ | async as products">
+        <div class="grid-row" *ngFor="let product of products">
+            <div class="grid-cell">{{ product.name }}</div>
+            <div class="grid-cell">{{ product.price | currency }}</div>
+            <div class="grid-cell">{{ product.description }}</div>
+        </div>
+    </ng-container>
+</div>

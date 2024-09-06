@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListService } from '../list.service';
+import { ListService, Product } from '../list.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,13 +11,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list-display.component.css']
 })
 export class ListDisplayComponent implements OnInit {
-  items$: Observable<string[]>;
+  products$: Observable<Product[]>;
 
   constructor(private listService: ListService) {
-    this.items$ = this.listService.getList();
+    this.products$ = this.listService.getProducts();
   }
 
   ngOnInit() {
-    this.items$ = this.listService.getList();
+    this.products$ = this.listService.getProducts();
   }
 }
